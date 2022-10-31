@@ -5,5 +5,18 @@ module.exports = {
     publicPath: './',
     outputDir: "dist", // 输出文件目录
     assetsDir: "static",//静态资源文件名称
-    indexPath: "index.html"
+    indexPath: "index.html",
+    devServer:{
+        port: 8080,
+        proxy: {
+            '/juheNews':{
+                target:'http://v.juhe.cn/',               //需要跨域的url
+                ws:true,                                  //代理webSocket
+                changeOrigin:true,                        //允许跨域
+                pathRewrite:{
+                    '^/juheNews':''                       //重写路径
+                }
+            }
+        }
+    }
 }
